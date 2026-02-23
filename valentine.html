@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine ❤️</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #fff0f5;
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px pink;
+}
+
+h1 {
+    color: #ff3366;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background: #ff3366;
+    color: white;
+}
+
+#noBtn {
+    background: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+ul {
+    text-align: left;
+    margin-top: 20px;
+}
+
+li {
+    margin: 10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="page1">
+
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <button id="yesBtn" onclick="showPage2()">YES 💘</button>
+    <button id="noBtn" onmouseover="moveNo()">NO 💔</button>
+
+    <p><i>Hint: The "No" button is a bit shy 😜</i></p>
+
+</div>
+
+
+<div class="container hidden" id="page2">
+
+    <h1>By clicking YES you agree to:</h1>
+
+    <ul>
+        <li>💞 Unlimited cuddles & soft kisses</li>
+        <li>🍫 Random chocolates & shared desserts</li>
+        <li>🎧 Listening & understanding you</li>
+        <li>🌱 Growing together</li>
+        <li>❤️ Being deeply loved</li>
+    </ul>
+
+    <p><b>Effective immediately!</b></p>
+
+    <button id="yesBtn" onclick="showPage3()">YES, I Agree 💖</button>
+
+</div>
+
+
+<div class="container hidden" id="page3">
+
+    <h1>Yay! 🎉 Good Choice!</h1>
+
+    <h2>🥰</h2>
+
+    <p>That's the best decision you have ever made! ❤️</p>
+
+</div>
+
+
+<script>
+
+function showPage2() {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+}
+
+function showPage3() {
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+}
+
+function moveNo() {
+    let btn = document.getElementById("noBtn");
+
+    let x = Math.random() * 300 - 150;
+    let y = Math.random() * 200 - 100;
+
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+</script>
+
+</body>
+</html>
