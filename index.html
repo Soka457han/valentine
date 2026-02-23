@@ -2,116 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Be My Valentine ❤️</title>
 
 <style>
+
 body {
-    font-family: Arial, sans-serif;
-    background: #fff0f5;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #ffeaf4);
+    overflow-x: hidden;
     text-align: center;
-    padding: 40px;
 }
 
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* Card */
 .container {
-    max-width: 500px;
-    margin: auto;
+    width: 90%;
+    max-width: 420px;
+    margin: 60px auto;
     background: white;
-    padding: 30px;
+    padding: 35px 25px;
     border-radius: 25px;
-    box-shadow: 0 0 25px pink;
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+    transition: 0.4s ease;
 }
 
 h1 {
-    color: #ff3366;
+    color: #ff4d88;
+    font-size: 26px;
 }
 
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Buttons */
 button {
-    padding: 12px 25px;
+    width: 85%;
+    max-width: 260px;
+    padding: 14px;
+    margin: 12px auto;
+    border-radius: 30px;
     border: none;
-    border-radius: 25px;
-    font-size: 18px;
+    font-size: 17px;
     cursor: pointer;
-    margin: 10px;
+    transition: 0.3s ease;
 }
 
 #yesBtn {
-    background: #ff3366;
+    background: #ff4d88;
     color: white;
 }
 
+#yesBtn:hover {
+    background: #ff2f73;
+}
+
 #noBtn {
-    background: #ddd;
+    background: #f1f1f1;
 }
 
 .hidden {
     display: none;
 }
 
-ul {
-    text-align: left;
-    margin-top: 20px;
+/* GIF */
+.gif {
+    width: 200px;
+    max-width: 90%;
+    margin: 20px auto;
+    border-radius: 15px;
 }
 
-li {
-    margin: 10px 0;
-    font-size: 16px;
+/* Mobile */
+@media (max-width: 480px) {
+    h1 { font-size: 23px; }
+    p { font-size: 17px; }
+    button { font-size: 18px; padding: 16px; }
 }
+
 </style>
 </head>
-
 <body>
 
 <!-- PAGE 1 -->
 <div class="container" id="page1">
-
     <h1>Will you be my Valentine? 💖</h1>
-
     <button id="yesBtn" onclick="showPage2()">YES 💘</button>
-    <button id="noBtn" onmouseover="moveNo()">NO 💔</button>
-
-    <p><i>Hint: The "No" button is a bit shy 😜</i></p>
-
+    <button id="noBtn" onclick="moveNo()">NO 💔</button>
+    <p>The "No" button feels shy 😜</p>
 </div>
-
 
 <!-- PAGE 2 -->
 <div class="container hidden" id="page2">
-
-    <h1>By clicking YES you agree to:</h1>
-
-    <ul>
-        <li>💞 Unlimited cuddles & soft kisses</li>
-        <li>🍫 Random chocolates & shared desserts</li>
-        <li>🎧 Listening & understanding you</li>
-        <li>🌱 Growing together</li>
-        <li>❤️ Being deeply loved</li>
-    </ul>
-
-    <p><b>Effective immediately!</b></p>
-
+    <h1>You Agree To 💕</h1>
+    <p>💞 Unlimited cuddles</p>
+    <p>🍫 Random chocolates</p>
+    <p>🎧 Always listening</p>
+    <p>🌱 Growing together</p>
+    <p>❤️ Being deeply loved</p>
     <button id="yesBtn" onclick="showPage3()">YES, I Agree 💖</button>
-
 </div>
-
 
 <!-- PAGE 3 -->
 <div class="container hidden" id="page3">
-
     <h1>Yay! 🎉 Good Choice!</h1>
 
-    <!-- Dancing GIF -->
     <img 
-      src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
-      alt="Happy Dance"
-      style="width:220px; margin:20px auto; display:block; border-radius:15px;"
-    >
+    src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+    class="gif">
 
-    <p style="font-size:18px;">
-      That's the best decision you have ever made! ❤️
-    </p>
-
+    <p>That's the best decision you have ever made ❤️</p>
 </div>
-
 
 <script>
 
@@ -127,12 +150,26 @@ function showPage3() {
 
 function moveNo() {
     let btn = document.getElementById("noBtn");
-
-    let x = Math.random() * 300 - 150;
-    let y = Math.random() * 200 - 100;
-
+    let x = Math.random() * 200 - 100;
+    let y = Math.random() * 100 - 50;
     btn.style.transform = `translate(${x}px, ${y}px)`;
 }
+
+/* Create Floating Hearts */
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+
+}, 500);
 
 </script>
 
