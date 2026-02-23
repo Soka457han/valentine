@@ -27,11 +27,11 @@ body {
 }
 
 @keyframes floatUp {
-    0% {
+    from {
         transform: translateY(0);
         opacity: 0.7;
     }
-    100% {
+    to {
         transform: translateY(-110vh);
         opacity: 0;
     }
@@ -46,7 +46,6 @@ body {
     padding: 35px 25px;
     border-radius: 25px;
     box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
-    transition: 0.4s ease;
 }
 
 /* Text */
@@ -70,7 +69,7 @@ button {
     border: none;
     font-size: 18px;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: 0.2s;
 }
 
 #yesBtn {
@@ -78,15 +77,11 @@ button {
     color: white;
 }
 
-#yesBtn:hover {
-    background: #ff2f73;
-}
-
 #noBtn {
     background: #f1f1f1;
 }
 
-/* Hide Pages */
+/* Hide pages */
 .hidden {
     display: none;
 }
@@ -112,19 +107,26 @@ button {
 
 <!-- PAGE 1 -->
 <div class="container" id="page1">
+
     <h1>Will you be my Valentine? 💖</h1>
 
     <button id="yesBtn" onclick="showPage2()">YES 💘</button>
 
-    <!-- NO runs away on hover -->
-    <button id="noBtn" onmouseover="moveNo()">NO 💔</button>
+    <!-- WORKS ON PC + MOBILE -->
+    <button id="noBtn"
+        onmouseover="moveNo()"
+        ontouchstart="moveNo()">
+        NO 💔
+    </button>
 
     <p>The "No" button is shy 😜</p>
+
 </div>
 
 
 <!-- PAGE 2 -->
 <div class="container hidden" id="page2">
+
     <h1>You Agree To 💕</h1>
 
     <p>💞 Unlimited cuddles</p>
@@ -134,11 +136,13 @@ button {
     <p>❤️ Being deeply loved</p>
 
     <button id="yesBtn" onclick="showPage3()">YES, I Agree 💖</button>
+
 </div>
 
 
 <!-- PAGE 3 -->
 <div class="container hidden" id="page3">
+
     <h1>Yay! 🎉 Good Choice!</h1>
 
     <img 
@@ -147,25 +151,26 @@ button {
       alt="Happy Dance">
 
     <p>That's the best decision you ever made ❤️</p>
+
 </div>
 
 
 <script>
 
-/* Page Switching */
+/* Page Switch */
 
 function showPage2() {
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.remove("hidden");
+    page1.classList.add("hidden");
+    page2.classList.remove("hidden");
 }
 
 function showPage3() {
-    document.getElementById("page2").classList.add("hidden");
-    document.getElementById("page3").classList.remove("hidden");
+    page2.classList.add("hidden");
+    page3.classList.remove("hidden");
 }
 
 
-/* NO Button Run Away */
+/* NO Button Escape (PC + Mobile) */
 
 function moveNo() {
 
@@ -177,13 +182,12 @@ function moveNo() {
     const bw = btn.offsetWidth;
     const bh = btn.offsetHeight;
 
-    const x = Math.random() * (w - bw - 40);
-    const y = Math.random() * (h - bh - 40);
+    const x = Math.random() * (w - bw - 30);
+    const y = Math.random() * (h - bh - 30);
 
     btn.style.position = "fixed";
     btn.style.left = x + "px";
     btn.style.top = y + "px";
-    btn.style.transform = "none";
 }
 
 
@@ -202,9 +206,7 @@ setInterval(() => {
 
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
+    setTimeout(() => heart.remove(), 6000);
 
 }, 450);
 
